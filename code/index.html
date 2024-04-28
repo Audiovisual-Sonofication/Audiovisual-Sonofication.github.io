@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Code - Audiovisual Exploration Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Code";
+        var mkdocs_page_input_path = "code.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Audiovisual Exploration Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Code</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../related-work/">Related Work</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Audiovisual Exploration Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Code</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="code-documentation">Code Documentation</h1>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li>Processing IDE</li>
+<li>ImFusion</li>
+<li>cmake </li>
+<li>qtCreator</li>
+<li>miPhysics library for physics simulation</li>
+<li>PeasyCam library for 3D camera control</li>
+<li>oscP5 library for handling OSC messages</li>
+<li>netP5 library for networking capabilities</li>
+</ul>
+<h1 id="phymodel">Phymodel</h1>
+<p>For this please refer to the miPhysics Library documentation which you can find in Processing. 
+<img alt="miPhysics Library Documentation" src="../images/miPhysics-documentation.png" /></p>
+<hr />
+<h1 id="shapegenerator">ShapeGenerator</h1>
+<p><img alt="Code Overview" src="../images/Shapegenerator.png" /></p>
+<h2 id="overview">Overview</h2>
+<p>The <code>ShapeGenerator</code> is an abstract class designed to facilitate shape generation within a physics engine. This class extends <code>PhyModel</code> and includes methods for setting up and manipulating physical properties, as well as adding nodes and connections based on geometric parameters.</p>
+<h2 id="properties">Properties</h2>
+<ul>
+<li><strong>m_mass</strong>: Default mass of nodes (default: 1.0).</li>
+<li><strong>m_stiffness</strong>: Spring stiffness (default: 0.01).</li>
+<li><strong>m_damping</strong>: Damping coefficient (default: 0.001).</li>
+<li><strong>m_size</strong>: Size of the nodes (default: 1.0).</li>
+<li><strong>m_dist</strong>: Default distance between nodes (default: 1.0).</li>
+<li><strong>m_l0</strong>: Natural length of springs (default: 1.0).</li>
+<li><strong>m_neighbors</strong>: Number of neighboring nodes each node should connect to (default: 2).</li>
+<li><strong>plane2D</strong>: Determines if the shapes are generated in a 2D plane (boolean).</li>
+<li><strong>m_generated</strong>: Indicates if the shape has been generated (boolean, initially <code>false</code>).</li>
+</ul>
+<h2 id="constructor">Constructor</h2>
+<p><code>public ShapeGenerator(String name, Medium m)</code></p>
+<p>Parameters:
+name: Name of the shape generator.
+m: Medium in which the shapes will be generated. </p>
+<h2 id="methods">Methods</h2>
+<p><code>init()</code></p>
+<p>Initializes the shape generation. If shapes have not been generated (m_generated is false), the program will terminate with an error message.</p>
+<p><code>generate()</code></p>
+<p>Abstract method that must be implemented by subclasses to define specific shape generation logic.</p>
+<p><code>setParams(double mass, double stiffness, double damping)</code></p>
+<p>Sets the mass, stiffness, and damping parameters.</p>
+<ul>
+<li>Parameters:<ul>
+<li>mass: Mass of the nodes.</li>
+<li>stiffness: Stiffness of the springs.</li>
+<li>damping: Damping coefficient.</li>
+</ul>
+</li>
+</ul>
+<p><code>setGeometry(double dist, double l0)</code></p>
+<p>Sets the geometric properties of the shape, including the distance between nodes and the natural length of the springs.</p>
+<ul>
+<li>Parameters:<ul>
+<li>dist: Distance between nodes.</li>
+<li>l0: Natural length of the springs.</li>
+</ul>
+</li>
+</ul>
+<p><code>addNodeAt(int x, int y, int z)</code></p>
+<p>Adds a node at specified coordinates.</p>
+<ul>
+<li>Parameters:<ul>
+<li>x: X-coordinate of the node.</li>
+<li>y: Y-coordinate of the node.</li>
+<li>z: Z-coordinate of the node.</li>
+</ul>
+</li>
+</ul>
+<p><code>addConnectionFor(int x1, int y1, int z1, int x2, int y2, int z2)</code></p>
+<p>Creates a connection between two nodes defined by their coordinates.</p>
+<ul>
+<li>Parameters:<ul>
+<li>x1, y1, z1: Coordinates of the first node.</li>
+<li>x2, y2, z2: Coordinates of the second node.</li>
+</ul>
+</li>
+</ul>
+<p><code>processPoints(int numClosest)</code></p>
+<p>Processes all nodes to find and connect each node to its closest neighbors based on a specified number of closest points.</p>
+<ul>
+<li>Parameters:<ul>
+<li>numClosest: Number of closest points to connect to each node.</li>
+</ul>
+</li>
+</ul>
+<p><code>findClosestPoints(Mass currentPoint, ArrayList of Mass points, int numClosest)</code></p>
+<p>Finds and returns a list of the closest points to a given point, based on the specified number of closest neighbors.</p>
+<ul>
+<li>Parameters:<ul>
+<li>currentPoint: The point from which distances are measured.</li>
+<li>points: List of all points.</li>
+<li>numClosest: Number of closest points to find.</li>
+</ul>
+</li>
+</ul>
+<p><code>euclideanDistance(Mass p1, Mass p2)</code></p>
+<p>Calculates and returns the Euclidean distance between two points.</p>
+<ul>
+<li>Parameters:<ul>
+<li>p1: First point.</li>
+<li>p2: Second point.</li>
+</ul>
+</li>
+</ul>
+<h2 id="private-helper-methods">Private Helper Methods</h2>
+<p><code>getNodeName(int x, int y, int z)</code> </p>
+<p>Generates a standardized node name based on its coordinates.</p>
+<ul>
+<li>Parameters:<ul>
+<li>x: X-coordinate of the node.</li>
+<li>y: Y-coordinate of the node.</li>
+<li>z: Z-coordinate of the node.</li>
+</ul>
+</li>
+<li>Returns: A string representing the node name, formatted as m_x_y_z.</li>
+</ul>
+<h2 id="example-usage">Example Usage</h2>
+<pre><code>CircularShapeGenerator myShapeGen = new CircularShapeGenerator(&quot;MyShape&quot;, someMedium);
+myShapeGen.setParams(2.0, 0.05, 0.002);
+myShapeGen.setGeometry(1.5, 1.0);
+myShapeGen.generate();
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../related-work/" class="btn btn-neutral float-right" title="Related Work">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../related-work/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
