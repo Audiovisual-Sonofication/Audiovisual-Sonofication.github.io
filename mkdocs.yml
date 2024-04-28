@@ -1,0 +1,8 @@
+site_name: Audiovisual Exploration Documentation
+nav:
+  - Home: index.md
+  - Code: code.md
+  - Related Work: related-work.md
+  - About: about.md
+
+theme: readthedocs

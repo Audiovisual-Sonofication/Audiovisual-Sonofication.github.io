@@ -1,2 +1,2 @@
-# Audiovisual-Sonofication.github.io
-Website
+# audiovisual-sonofication.github.io
+Website for Audiovisual Sonofication
